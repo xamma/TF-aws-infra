@@ -26,3 +26,8 @@ variable "privsubcidr" {
   type = string
   default = "10.0.2.0/24"
 }
+
+variable "domain_name" {
+  type = string
+  default = "develop.internal"
+}

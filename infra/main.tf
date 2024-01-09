@@ -76,7 +76,7 @@ resource "aws_nat_gateway" "natgateway" {
 #- DNS ---------------------------------------
 
 resource "aws_route53_zone" "private" {
-  name = "develop.internal"
+  name = var.domain_name
 
   vpc {
     vpc_id = aws_vpc.my-vpc-01.id
@@ -85,7 +85,7 @@ resource "aws_route53_zone" "private" {
 
 resource "aws_route53_record" "webserver" {
   zone_id = aws_route53_zone.private.zone_id
-  name    = "webserver.develop.internal"
+  name    = "webserver.${var.domain_name}"
   type    = "A"
   ttl     = 300
   records = [aws_instance.vm01.private_ip]
@@ -93,7 +93,7 @@ resource "aws_route53_record" "webserver" {
 
 resource "aws_route53_record" "database" {
   zone_id = aws_route53_zone.private.zone_id
-  name    = "database.develop.internal"
+  name    = "database.${var.domain_name}"
   type    = "A"
   ttl     = 300
   records = [aws_instance.vm02.private_ip]
