@@ -1,0 +1,4 @@
+infra/.terraform*
+infra/terraform.tfstate*
+infra/remote-state/.terraform*
+infra/remote-state/terraform.tfstate*
